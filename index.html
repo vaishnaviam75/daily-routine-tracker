@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Daily Steps to Job Ready</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="night">
+
+<div class="container">
+  <h1>🌙 My Daily Steps to Job Ready</h1>
+  <p id="todayDate"></p>
+
+  <div id="taskList"></div>
+
+  <div class="junk">
+    🍔 Junk Food Eaten (-5)
+    <input type="checkbox" id="junkFood">
+  </div>
+
+  <h2 id="scoreText">Score: 0 / 100</h2>
+
+  <!-- IMAGES -->
+  <div class="daily-row">
+    <img src="images/happy1.png" class="side-img">
+
+    <div class="center-img">
+      <p>Stay Consistent</p>
+      <img id="scoreImage" src="images/happy.png">
+    </div>
+
+    <img src="images/happy2.png" class="side-img">
+  </div>
+
+  <button onclick="saveToday()">Save Today</button>
+  <a href="history.html" class="link">View History</a>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+body.night {
+  background: #0f172a;
+  color: white;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 20px;
+}
+
+.task, .day-box {
+  background: #1e293b;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.junk {
+  background: #7f1d1d;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.link {
+  display: block;
+  margin-top: 20px;
+  color: #93c5fd;
+}
+
+.daily-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.side-img {
+  width: 90px;
+}
+
+.center-img {
+  text-align: center;
+}
+
+.center-img img {
+  width: 120px;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background: #020617;
+  padding: 20px;
+  border-radius: 16px;
+  width: 360px;
+}
+
+.modal-box img {
+  width: 120px;
+  display: block;
+  margin: auto;
+}
+
+.close {
+  float: right;
+  cursor: pointer;
+}
+

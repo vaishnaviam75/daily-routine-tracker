@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>History</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="night">
+
+<div class="container">
+  <h1>📅 Daily History</h1>
+  <h3 id="avgScore"></h3>
+  <div id="historyList"></div>
+  <a href="index.html" class="link">Back</a>
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+  <div class="modal-box">
+    <span class="close" onclick="closeModal()">×</span>
+    <h3 id="mDate"></h3>
+    <img id="mImg">
+    <p id="mScore"></p>
+    <ul id="mTasks"></ul>
+  </div>
+</div>
+
+<script>
+const start = new Date("2026-02-09");
+const end   = new Date("2026-05-31");
+const list  = document.getElementById("historyList");
+
+/* DEFAULT ROUTINES */
+const weekdayDefault = [
+  "Exercise",
+  "Healthy Meal",
+  "Internship (5 hrs)",
+  "Job Apply – 30 min",
+  "English Practice – 30 min",
+  "Skill Study – 2 hrs",
+  "Project Making – 30 min"
+];
+
+const weekendDefault = [
+  "Exercise",
+  "Healthy Meal",
+  "Skill Study – 3 hrs",
+  "Project Making – 1 hr",
+  "English Practice – 30 min",
+  "Job Search / Apply – 30 min"
+];
+
+function openModal(key) {
+  const data = JSON.parse(localStorage.getItem(key));
+  const dateObj = new Date(key);
+  const isWeekend = dateObj.getDay() === 0 || dateObj.getDay() === 6;
+
+  document.getElementById("mDate").innerText = key;
+  const ul = document.getElementById("mTasks");
+  ul.innerHTML = "";
+
+  if (!data) {
+    document.getElementById("mScore").innerText = "Not Updated";
+    document.getElementById("mImg").src = "images/sad.png";
+
+    const routine = isWeekend ? weekendDefault : weekdayDefault;
+    routine.forEach(t => {
+      ul.innerHTML += `<li>⬜ ${t}</li>`;
+    });
+
+  } else {
+    document.getElementById("mScore").innerText =
+      `Score: ${data.score} / 100`;
+    document.getElementById("mImg").src =
+      data.score >= 60 ? "images/happy.png" : "images/sad.png";
+
+    data.tasks.forEach(t => {
+      ul.innerHTML += `<li>${t.done ? "✅" : "⬜"} ${t.name}</li>`;
+    });
+  }
+
+  document.getElementById("modal").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+/* LIST + AVERAGE SCORE */
+let total = 0, count = 0;
+
+for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+  const key = d.toDateString();
+  const data = JSON.parse(localStorage.getItem(key));
+
+  if (data) { total += data.score; count++; }
+
+  list.innerHTML += `
+    <div class="day-box">
+      <span>${key}</span>
+      <span>${data ? "Updated" : "Not Updated"}</span>
+      <button onclick="openModal('${key}')">View Routine</button>
+    </div>
+  `;
+}
+
+document.getElementById("avgScore").innerText =
+  `Overall Average Score: ${count ? Math.round(total / count) : 0} / 100`;
+</script>
+
+</body>
+</html>
